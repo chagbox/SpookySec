@@ -300,6 +300,22 @@ TryHackMe{[REDACTED]}
 
 The successful Administrator session demonstrated complete compromise of the target domain controller.
 
+## MITRE ATT&CK Mapping
+
+| Stage | Technique ID | Technique Name |
+|---|---|---|
+| Network and service reconnaissance (nmap) | T1595.002 | Active Scanning: Vulnerability Scanning |
+| LDAP RootDSE / domain enumeration | T1087.002 | Account Discovery: Domain Account |
+| Kerbrute username enumeration | T1589.002 | Gather Victim Identity Information: Email Addresses |
+| AS-REP roasting (`GetNPUsers`) | T1558.004 | Steal or Forge Kerberos Tickets: AS-REP Roasting |
+| Offline hash cracking (Hashcat) | T1110.002 | Brute Force: Password Cracking |
+| SMB share enumeration and credential file access | T1552.001 | Unsecured Credentials: Credentials In Files |
+| Domain credential extraction (`secretsdump` / DRSUAPI) | T1003.006 | OS Credential Dumping: DCSync |
+| Pass-the-Hash via Evil-WinRM | T1550.002 | Use Alternate Authentication Material: Pass the Hash |
+| Remote management session (WinRM) | T1021.006 | Remote Services: Windows Remote Management |
+
+This mapping uses the techniques that were actually performed in this write-up and follows the same ATT&CK framework used in [`APT29-SolarWinds-MITRE-ATTACK`](https://github.com/chagbox/APT29-SolarWinds-MITRE-ATTACK), so the two projects read as one portfolio.
+
 ## 8. Attack Chain
 
 The complete attack path was:
@@ -433,4 +449,6 @@ The primary security lessons are:
 * Monitor for credential dumping and Pass-the-Hash activity.
 * Regularly audit privileged accounts and delegated permissions.
 
+---
 
+Part of my security portfolio: [github.com/chagbox](https://github.com/chagbox)
